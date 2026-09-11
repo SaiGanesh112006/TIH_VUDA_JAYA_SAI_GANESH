@@ -1,0 +1,7 @@
+Temperature,Number of Files,Total Rows,Total Missing Values,Total Duplicate Rows
+0degC,32,850622,850622,232
+10degC,32,925533,925552,456
+25degC,36,1045475,1044620,287
+40degC,35,692629,692629,269
+n10degC,38,829826,829826,4398
+n20degC,35,610830,610830,234
