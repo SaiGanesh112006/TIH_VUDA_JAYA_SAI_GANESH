@@ -1,0 +1,16 @@
+Column,Data Type,Missing Count,Missing %,Unique Values
+Time Stamp,object,208,0.0,577393
+Step,float64,208,0.0,70
+Status,object,208,0.0,5
+Prog Time,object,208,0.0,4840467
+Step Time,object,208,0.0,3246062
+Cycle,float64,208,0.0,11
+Cycle Level,float64,208,0.0,2
+Procedure,object,208,0.0,6
+Voltage,float64,211,0.0,15825
+Current,float64,211,0.0,8801
+Temperature,float64,211,0.0,578
+Capacity,float64,211,0.0,265342
+WhAccu,object,3,0.0,1149704
+Cnt,object,4,0.0,39
+File Name,object,0,0.0,208
