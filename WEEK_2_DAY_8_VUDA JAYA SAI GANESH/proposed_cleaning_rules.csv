@@ -1,0 +1,11 @@
+Issue,Proposed Action
+Metadata rows,Remove metadata rows before analysis
+Units row,Remove units row from measurement data
+Column names,Standardize column names
+Non-numeric values,Convert valid measurement values to numeric and flag invalid entries
+Missing values,Quantify and investigate before treatment
+Invalid measurements,Flag values outside physically meaningful ranges
+Outliers,Flag statistical outliers and investigate before removal
+Target leakage,Remove future or target-derived information from input features
+Train/test contamination,Use cycle/session-aware splitting where appropriate
+Different file structures,Convert files into a common measurement schema
