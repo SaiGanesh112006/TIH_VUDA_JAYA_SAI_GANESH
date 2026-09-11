@@ -1,0 +1,5 @@
+Parameter,Invalid Count,Reason
+Voltage,3,Voltage <= 0 or unusually high voltage
+Current,211,Infinite or non-finite current
+Temperature,0,Temperature outside broad physical range
+Capacity,211,Infinite or non-finite capacity
