@@ -1,0 +1,31 @@
+{
+    "project": "Battery SOC Estimation and Remaining Charging Time Prediction using ML",
+    "day": "Day 11",
+    "random_seed": 42,
+    "group_variable": "Source_File",
+    "targets": [
+        "SOC",
+        "Remaining Charging Time"
+    ],
+    "soc_input_variables": [
+        "Voltage",
+        "Current",
+        "Temperature",
+        "Elapsed Time",
+        "Cycle"
+    ],
+    "time_input_variables": [
+        "Voltage",
+        "Current",
+        "Temperature",
+        "Elapsed Time",
+        "Cycle",
+        "Capacity"
+    ],
+    "soc_target_generation": "SOC was calculated as Capacity divided by the final charging capacity of the corresponding charging session and expressed as a percentage.",
+    "remaining_time_target_generation": "Remaining Charging Time was calculated as the difference between the final charging timestamp of the session and the current timestamp.",
+    "data_split": "Approximately 70/15/15 train/validation/test split using Source_File groups to reduce data leakage.",
+    "preprocessing": "Median imputation and StandardScaler were fitted only on training data and then applied to validation and test data.",
+    "feature_selection": "Reserved for Day 13",
+    "feature_engineering": "Reserved for Day 13"
+}
