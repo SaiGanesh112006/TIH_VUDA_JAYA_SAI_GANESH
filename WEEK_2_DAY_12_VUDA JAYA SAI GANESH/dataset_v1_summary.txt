@@ -1,0 +1,11 @@
+Dataset Version: V1
+Frozen on: 2026-09-12 17:10:26.299833
+Source: LG 18650HG2 Li-ion battery dataset, folders: ['25degC']
+Test types included: all
+Downsampling: every 10 rows
+Final shape: (104560, 19)
+Target: soc_percent, derived as 100*(1 + capacity_ah/3.0), clipped [0,100]
+Feature columns: ['voltage_v', 'current_a', 'cell_temp_c', 'power_w', 'ambient_temp_c']
+Excluded as leakage/artifacts: ['capacity_ah', 'wh_accu', 'cnt', 'step', 'cycle', 'cycle_level', 'procedure', 'status', 'prog_time', 'step_time']
+Split method: GroupShuffleSplit by file_id, test_size=0.2, random_state=42
+Train shape: (76792, 5), Test shape: (27768, 5)
