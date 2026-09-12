@@ -1,0 +1,16 @@
+Day 13 — Feature Engineering & Selection
+Generated: 2026-09-12 17:43:04.172866
+
+Raw feature set: ['voltage_v', 'current_a', 'cell_temp_c', 'power_w', 'ambient_temp_c']
+Engineered feature set (post redundancy pruning): ['voltage_roll_std5', 'current_roll_std5']
+Features dropped for high VIF (>10): ['voltage_v', 'current_a', 'cell_temp_c', 'c_rate', 'voltage_lag1', 'temp_rise_c', 'voltage_delta1', 'current_lag1', 'current_delta1', 'current_temp_interaction', 'voltage_roll_mean5', 'power_w', 'ambient_temp_c', 'current_roll_mean5']
+Highly correlated pairs (>0.9): [('voltage_v', 'voltage_lag1', np.float64(0.997)), ('voltage_v', 'voltage_roll_mean5', np.float64(0.996)), ('current_a', 'power_w', np.float64(0.996)), ('current_a', 'c_rate', np.float64(1.0)), ('current_a', 'current_temp_interaction', np.float64(1.0)), ('cell_temp_c', 'temp_rise_c', np.float64(1.0)), ('power_w', 'c_rate', np.float64(0.996)), ('power_w', 'current_temp_interaction', np.float64(0.995)), ('c_rate', 'current_temp_interaction', np.float64(1.0)), ('voltage_lag1', 'voltage_roll_mean5', np.float64(0.998)), ('current_lag1', 'current_roll_mean5', np.float64(0.918))]
+
+Raw vs Engineered performance:
+                   Raw_MAE  Engineered_MAE    Raw_R2  Engineered_R2  MAE_improvement_%
+LinearRegression  3.470759       23.193436  0.971168      -0.068143         -568.25267
+RandomForest      3.163406       22.901408  0.853029      -0.146045         -623.94770
+
+Feature validity documentation:
+ - voltage_roll_std5: Rolling stat over current + past 4 samples within the same file — causal.
+ - current_roll_std5: Rolling stat over current + past 4 samples within the same file — causal.
