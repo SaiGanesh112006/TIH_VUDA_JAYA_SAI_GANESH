@@ -1,0 +1,21 @@
+Day 15 — Baseline Modelling + Mentor Review
+Generated: 2026-09-13 03:32:39.403621
+
+Split used: FROZEN Dataset V1 split from Day 12 (GroupShuffleSplit by file_id, test_size=0.2, random_state=42) — not re-split here.
+
+Agreed metrics: MAE (SOC%), RMSE (SOC%), R^2
+
+Baseline results:
+                           MAE       RMSE        R2  MAE_improvement_vs_mean_%
+label                                                                         
+Mean baseline        23.041381  27.508849 -0.047575                   0.000000
+Linear — raw          3.472758   4.585786  0.970888                  84.928169
+Linear — engineered  23.193436  27.771279 -0.068143                  -0.659925
+
+Modelling direction:
+ - Engineered features did NOT beat raw features on a plain linear model.
+   Flag for mentor: is this a sign the engineered features need revisiting,
+   or that a non-linear model is needed before the benefit shows up?
+ - Both linear baselines are expected to beat the mean baseline by a wide
+   margin; if not, that's a red flag to raise with the mentor before
+   investing time in more complex models.
