@@ -1,0 +1,25 @@
+Day 17 — Additional / Neural Model
+Generated: 2026-09-13 07:22:26.477263
+
+SOC target: small MLP justified — large row count, smooth but non-linear V/I/T -> SOC relationship, different inductive bias from Day 16's trees.
+  Architecture: 64 -> Dropout(0.15) -> 32 -> Dropout(0.10) -> 1, 2,305 trainable params.
+  Training stopped at epoch 10 (EarlyStopping, patience=10).
+  Test MAE=25.932 SOC%, RMSE=31.611, R2=-0.3839
+
+Remaining charging time target: NEW, engineered in this notebook from status=='CHA' segments (see Cell 6 for exact definition).
+  Charging rows: 1299, segments: 67.
+  ANN explicitly NOT used here — too few/repetitive segments to train a network without memorizing. Random Forest used instead.
+  Test MAE=9001.754s, RMSE=18410.153s, R2=-0.1602
+
+Full comparison (all models, all days):
+                                      MAE          RMSE        R2
+label                                                            
+RandomForest — raw               3.284465     10.474381  0.848121
+XGBoost — raw                    3.300615     10.082012  0.859287
+Linear — raw                     3.472758      4.585786  0.970888
+XGBoost — engineered            22.598706     27.527405 -0.049465
+RandomForest — engineered       22.942698     28.916572 -0.158060
+Mean baseline                   23.041381     27.508849 -0.047575
+Linear — engineered             23.193436     27.771279 -0.068143
+MLP — SOC                       25.932455     31.611177 -0.383945
+RandomForest — charging time  9001.753713  18410.153468 -0.160202
