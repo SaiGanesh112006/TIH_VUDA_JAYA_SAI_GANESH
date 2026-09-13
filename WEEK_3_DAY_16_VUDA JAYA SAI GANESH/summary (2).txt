@@ -1,0 +1,48 @@
+Day 16 — Ensemble Models
+Generated: 2026-09-13 06:09:08.187713
+
+Split used: SAME frozen Dataset V1 split as Day 12/15 (GroupShuffleSplit by file_id, test_size=0.2, random_state=42).
+Gradient boosting implementation used: XGBoost
+Agreed metrics: MAE (SOC%), RMSE (SOC%), R^2 — scored on both train and test.
+
+Train vs. test metrics:
+                                         MAE       RMSE        R2
+label                                                            
+RandomForest — raw (train)          0.884200   1.903391  0.995334
+RandomForest — raw (test)           3.284465  10.474381  0.848121
+XGBoost — raw (train)               1.325229   2.532821  0.991738
+XGBoost — raw (test)                3.300615  10.082012  0.859287
+RandomForest — engineered (train)  19.101003  23.470194  0.290279
+RandomForest — engineered (test)   22.942698  28.916572 -0.158060
+XGBoost — engineered (train)       20.949292  24.891887  0.201693
+XGBoost — engineered (test)        22.598706  27.527405 -0.049465
+
+Overfit / underfit check:
+                           train_MAE   test_MAE   MAE_gap  train_R2   test_R2                          verdict
+model                                                                                                         
+RandomForest — raw          0.884200   3.284465  2.400266  0.995334  0.848121             possible overfitting
+XGBoost — raw               1.325229   3.300615  1.975386  0.991738  0.859287             possible overfitting
+RandomForest — engineered  19.101003  22.942698  3.841695  0.290279 -0.158060  underfitting (both scores weak)
+XGBoost — engineered       20.949292  22.598706  1.649414  0.201693 -0.049465  underfitting (both scores weak)
+
+Baselines vs. ensembles (test set):
+                                 MAE       RMSE        R2
+label                                                    
+RandomForest — raw          3.284465  10.474381  0.848121
+XGBoost — raw               3.300615  10.082012  0.859287
+Linear — raw                3.472758   4.585786  0.970888
+XGBoost — engineered       22.598706  27.527405 -0.049465
+RandomForest — engineered  22.942698  28.916572 -0.158060
+Mean baseline              23.041381  27.508849 -0.047575
+Linear — engineered        23.193436  27.771279 -0.068143
+
+Best model on test MAE: RandomForest — raw
+
+Modelling direction:
+ - If the best ensemble beats the Day 15 linear baselines by a clear margin,
+   that confirms tree-based models are worth carrying forward.
+ - Check the overfit_check.csv verdicts before picking a model to tune further —
+   a model with a small train/test gap and solid R^2 is a safer starting point
+   than the single lowest test MAE if that model is also badly overfit.
+ - Feature importance (engineered set) is saved as a plot — useful for deciding
+   which Day 13 features are worth keeping if the feature list gets trimmed later.
