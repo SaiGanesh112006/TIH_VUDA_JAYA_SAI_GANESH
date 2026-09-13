@@ -1,0 +1,13 @@
+Day 19 — Controlled Hyperparameter / Parameter Experiments
+Generated: 2026-09-13 09:40:35.657452
+
+Shortlisted SOC candidate: RandomForest — raw (family: RandomForest, features: raw)
+Selection rule: validation split carved from TRAINING data only (GroupShuffleSplit, 15%, grouped by file_id) — the Day 12 test set was not touched until the single final evaluation below.
+
+Best validated config: {'max_depth': 8, 'min_samples_leaf': 4, 'n_estimators': 300}
+Final test MAE=2.899, RMSE=8.379, R2=0.9028
+Untuned baseline for comparison ('RandomForest — raw'): MAE=3.284
+
+Second shortlisted candidate: Random Forest for remaining_charge_time_s
+Best validated config: {'max_depth': 10, 'n_estimators': 100}
+Final test MAE=24345.922s, RMSE=33425.956s, R2=-10841.0237
