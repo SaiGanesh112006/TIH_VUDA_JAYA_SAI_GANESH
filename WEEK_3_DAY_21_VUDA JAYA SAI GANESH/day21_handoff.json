@@ -1,0 +1,41 @@
+{
+  "created": "2026-10-28 15:40:15.650539",
+  "soc_rf_best_params": {
+    "n_estimators": 300,
+    "max_depth": 12,
+    "min_samples_leaf": 2
+  },
+  "charging_rf_best_params": {
+    "n_estimators": 200,
+    "max_depth": 14
+  },
+  "test_metrics": {
+    "Mean baseline": {
+      "test_MAE": 28.928112258345138,
+      "test_RMSE": 32.19163980571382,
+      "test_R2": -0.0328189407521664
+    },
+    "Linear (raw)": {
+      "test_MAE": 18.55364093265075,
+      "test_RMSE": 25.195104371552603,
+      "test_R2": 0.36734008607588176
+    },
+    "RF untuned (Day 16)": {
+      "test_MAE": 27.329728228019665,
+      "test_RMSE": 37.716585043428516,
+      "test_R2": -0.4177600083981128
+    },
+    "RF tuned": {
+      "test_MAE": 27.412649073309,
+      "test_RMSE": 37.8479019650975,
+      "test_R2": -0.4276495560218996
+    },
+    "Gradient Boosting (raw)": {
+      "test_MAE": 25.84610268057733,
+      "test_RMSE": 36.980037977263805,
+      "test_R2": -0.36292732921956916
+    }
+  },
+  "hybrid_helps_on_validation": false,
+  "direction": "Week-4 direction: carry both the tuned Random Forest and the plain Linear model into the freeze and decide with grouped cross-validation, because Linear has the lower RMSE/higher R2 while RF has the lower MAE."
+}

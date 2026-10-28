@@ -1,0 +1,32 @@
+
+
+1) BASELINE vs TUNED (SOC %, frozen test split, scored once)
+- Mean baseline : MAE 28.93 | RMSE 32.19 | R2 -0.033
+- Linear (raw)  : MAE 18.55 | RMSE 25.20 | R2 0.367
+- RF untuned    : MAE 27.33 | RMSE 37.72 | R2 -0.418
+- RF tuned {'n_estimators': 300, 'max_depth': 12, 'min_samples_leaf': 2}: MAE 27.41 | RMSE 37.85 | R2 -0.428
+- Gradient Boosting (raw): MAE 25.85 | RMSE 36.98 | R2 -0.363
+Tuning changed RF test MAE by -0.3% vs the untuned Day-16 config. Tuning used a grouped validation split from the training files only.
+
+2) PROJECT-SPECIFIC STUDY
+- Error by regime (tuned RF): worst SOC band = 0-15 (knee) (MAE 71.64); worst ambient temperature = 25 C (MAE 27.41).
+- Rows whose inputs fall outside the training 1-99 percentile range: RF MAE 38.32 vs 26.47 inside the range.
+- Engineered-feature diagnostics not run.
+- Remaining charging time (9 train / 5 test charge files): mean baseline MAE=27124s, tuned RF MAE=26626s (443.8 min), R2=-1.285. The signal is sparse and repetitive (CC-CV), so this target stays the weakest and is judged separately from SOC.
+
+3) SUCCESSES AND FAILURES
+- Best files (lowest RF MAE): 25degC_Charge6, 25degC_Charge15.
+- Worst files: 25degC_C20DisCh, 25degC_Charge8. See fig_success_failure_traces.png.
+
+4) REMAINING WEAKNESSES / UNUSUAL ERRORS
+- RMSE/MAE ratio of RF = 1.38; the top 1% of rows carry 5% of RF squared error and the single worst file (25degC_C20DisCh) carries 97%. Errors are rare but large, not uniform.
+- 0 RF predictions fall outside the physical 0-100% range (clipping is a free fix).
+- Engineered features are unreliable (see above); charging time is data-starved.
+
+5) PROPOSED WEEK-4 DIRECTION (for mentor approval)
+- Week-4 direction: carry both the tuned Random Forest and the plain Linear model into the freeze and decide with grouped cross-validation, because Linear has the lower RMSE/higher R2 while RF has the lower MAE.
+- Freeze preprocessing, the grouped split and the MAE/RMSE/R2 protocol on Day 22; choose the final model with grouped cross-validation on training files only, using a pre-agreed rule that rewards robustness and simplicity.
+- Audit the Day-13 engineered features before any further use.
+- Keep charging-time as a separately-judged, lower-confidence deliverable.
+
+QUESTIONS FOR MENTOR: (a) Do you approve the direction above? (b) Is a Linear-vs-tree decision by cross-validated RMSE + MAE acceptable? (c) Should engineered features be dropped from the final model?
