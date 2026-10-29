@@ -1,0 +1,8 @@
+
+Final SOC model: RandomForest (tuned) | features: voltage_v, current_a, cell_temp_c, power_w, ambient_temp_c | clipped to [0,100].
+Test: MAE 27.725 | RMSE 37.708 | R2 -0.4171 (train MAE 1.590, gap 1644%).
+Strongest simple baseline (Linear): MAE 18.104 | RMSE 25.163 | R2 0.3689. Mean baseline MAE 28.93.
+Runtime: fit 2.15s; single-row inference 89.644 ms (Linear 1.287 ms); 3,301 rows/s; model size 6.14 MB (Linear 0.0009 MB).
+Trade-off: Complexity NOT justified on test - recommend reverting to the simple baseline.
+Errors: worst SOC band 0-15 (knee); worst file 25degC_C20DisCh; top 1% of rows carry 6% of squared error; RMSE/MAE = 1.36.
+Charging time: RF MAE 26515 s vs mean baseline 27124 s - low confidence.
