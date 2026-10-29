@@ -1,0 +1,65 @@
+{
+  "frozen_on": "2026-10-29 15:05:08.184615",
+  "chosen_model": "RandomForest (tuned)",
+  "estimator": "RandomForestRegressor(max_depth=8, min_samples_leaf=4, n_estimators=300,\n                      n_jobs=-1, random_state=42)",
+  "features": [
+    "voltage_v",
+    "current_a",
+    "cell_temp_c",
+    "power_w",
+    "ambient_temp_c"
+  ],
+  "target": "soc_percent",
+  "preprocessing": "column selection by name only; no scaling; predictions clipped to [0,100]",
+  "split": "GroupShuffleSplit by file_id, test_size=0.2, random_state=42 (Day 12)",
+  "train_shape": [
+    5028,
+    7
+  ],
+  "test_shape": [
+    328,
+    7
+  ],
+  "train_file_ids": [
+    "25degC_Cap_1C",
+    "25degC_Charge",
+    "25degC_Charge1",
+    "25degC_Charge10",
+    "25degC_Charge11",
+    "25degC_Charge12",
+    "25degC_Charge13",
+    "25degC_Charge16",
+    "25degC_Charge2",
+    "25degC_Charge3",
+    "25degC_Charge4",
+    "25degC_Charge5",
+    "25degC_Charge7",
+    "25degC_Charge9",
+    "25degC_Dis_0p5C",
+    "25degC_Dis_2C",
+    "25degC_HWFET",
+    "25degC_US06"
+  ],
+  "test_file_ids": [
+    "25degC_C20DisCh",
+    "25degC_Charge14",
+    "25degC_Charge15",
+    "25degC_Charge6",
+    "25degC_Charge8"
+  ],
+  "selection_rule": "GroupKFold CV on train files; within 10% of best CV MAE -> simplest; worst fold <= 2x mean",
+  "robustness_pass": false,
+  "charging_time_model_frozen": true,
+  "metrics": [
+    "MAE",
+    "RMSE",
+    "R2"
+  ],
+  "seed": 42,
+  "versions": {
+    "python": "3.13.18",
+    "sklearn": "1.6.1",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3"
+  }
+}

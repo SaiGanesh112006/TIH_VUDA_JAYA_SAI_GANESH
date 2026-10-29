@@ -1,0 +1,8 @@
+Day 22 - Technical selection rationale
+Final SOC method: RandomForest (tuned) on 5 raw sensor features, predictions clipped to [0,100].
+Evidence: grouped 5-fold CV on training files only - CV MAE 11.292, RMSE 20.415, R2 -1.312, worst fold MAE 26.332.
+Rule (fixed before test): within 10% of best CV MAE -> simplest; robustness check worst fold <= 2x mean (FLAG).
+Rejected: engineered features (Day 13/17, MAE ~23, R2<0); MLP (Day 17, MAE 25.9); mean baseline = reference only.
+Frozen: file-level split, feature list, preprocessing, hyper-parameters, seed, metric protocol (MAE/RMSE/R2). Test set first used in Day 23.
+Charging time: separate constrained RF (100 trees, depth 10), judged separately - one CC-CV segment per file, low confidence.
+Known limitations: low-SOC knee errors; only 25 degC data; RMSE >> MAE means occasional large mistakes.
