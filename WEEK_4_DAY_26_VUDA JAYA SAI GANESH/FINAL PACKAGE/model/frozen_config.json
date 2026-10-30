@@ -1,0 +1,74 @@
+{
+  "frozen_on": "2026-10-30 16:59:05.235834",
+  "dataset": {
+    "train_md5": "0d634503112eefb9ea22d8540c1998ca",
+    "train_shape": [
+      5028,
+      7
+    ],
+    "train_file_ids": [
+      "25degC_Cap_1C",
+      "25degC_Charge",
+      "25degC_Charge1",
+      "25degC_Charge10",
+      "25degC_Charge11",
+      "25degC_Charge12",
+      "25degC_Charge13",
+      "25degC_Charge16",
+      "25degC_Charge2",
+      "25degC_Charge3",
+      "25degC_Charge4",
+      "25degC_Charge5",
+      "25degC_Charge7",
+      "25degC_Charge9",
+      "25degC_Dis_0p5C",
+      "25degC_Dis_2C",
+      "25degC_HWFET",
+      "25degC_US06"
+    ],
+    "test_md5": "16c038eaccee824689d549199d884865",
+    "split": "GroupShuffleSplit by file_id, test_size=0.2, random_state=42 (Day 12)"
+  },
+  "target": "soc_percent",
+  "features": [
+    "voltage_v",
+    "current_a",
+    "cell_temp_c",
+    "power_w",
+    "ambient_temp_c"
+  ],
+  "excluded_as_leakage": [
+    "capacity_ah",
+    "wh_accu",
+    "cnt",
+    "step",
+    "cycle",
+    "cycle_level",
+    "procedure",
+    "status",
+    "prog_time",
+    "step_time"
+  ],
+  "preprocessing": "column selection by name only; no scaling/imputation; predictions clipped to [0,100]",
+  "selection": {
+    "cv": "GroupKFold(5) on train files",
+    "eligible": [
+      "RandomForest (tuned)",
+      "HistGradBoost (raw)"
+    ],
+    "chosen": "RandomForest (tuned)",
+    "estimator": "RandomForestRegressor(max_depth=8, min_samples_leaf=4, n_estimators=300,\n                      n_jobs=-1, random_state=42)",
+    "robustness_pass": false
+  },
+  "charging_time_model": {
+    "frozen": true,
+    "confidence": "low - sparse CC-CV data"
+  },
+  "seed": 42,
+  "environment": {
+    "python": "3.13.18",
+    "sklearn": "1.6.1",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3"
+  }
+}
