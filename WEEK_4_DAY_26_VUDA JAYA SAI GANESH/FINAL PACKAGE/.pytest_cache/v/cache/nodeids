@@ -1,0 +1,5 @@
+[
+  "tests/test_pipeline.py::test_deterministic",
+  "tests/test_pipeline.py::test_missing_column_raises",
+  "tests/test_pipeline.py::test_output_is_clipped_and_sized"
+]
