@@ -1,0 +1,14 @@
+Limitation list - Day 25 (model: RandomForest (tuned))
+Data-driven findings (test files):
+1. Worst SOC band: 0-15 (knee) (MAE 69.30); worst current regime: discharge (MAE 36.18); worst test type: C20DisCh; worst file: 25degC_C20DisCh (97% of total squared error).
+2. Heavy-tailed errors: median |err| 24.14, 99th pct 92.41, max 92.69; RMSE/MAE = 1.36.
+3. Rows with inputs outside the training 1-99% range: MAE 37.39 vs 26.89 inside.
+4. Dominant feature (permutation): voltage_v; V, I and P=V*I are collinear so their importances are not separable.
+Structural limitations:
+5. Single ambient temperature (25 C) - no evidence for -20..40 C.
+6. Single-sample model: no history/temporal state, no aging term; identical V/I/T can map to different SOC.
+7. Steep voltage knee near 0-15% SOC makes SOC hypersensitive to voltage noise.
+8. Engineered lag/rolling features degraded accuracy (MAE ~23) - feature pipeline not trustworthy yet.
+9. Remaining-charging-time model is low confidence (one CC-CV segment per file, few files).
+10. Few test files; single LG HG2 cell; metrics may move under a different file-level split.
+Likely failure conditions: SOC < 15%, high-current transients (US06/LA92-type drives), inputs outside the training range, sensor drift/offset, other cell chemistries.
